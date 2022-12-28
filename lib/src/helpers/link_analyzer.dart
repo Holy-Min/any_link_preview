@@ -111,6 +111,7 @@ class LinkAnalyzer {
       print('document data : $url and $document');
       if (document == null) return info;
 
+      print('before extract');
       final data_ = _extractMetadata(document, url: url);
       print('check data : $url and $data_');
 
@@ -164,6 +165,7 @@ class LinkAnalyzer {
   /// lack of URI identifiers from the metadata parsers.
   static Metadata _parse(Document? document, {String? url}) {
     final output = Metadata();
+    print('output data : $output');
 
     final parsers = [
       _openGraph(document),
@@ -189,7 +191,7 @@ class LinkAnalyzer {
       output.image = Uri.parse(url_).resolve(image).toString();
     }
 
-    print('output data : $output');
+    // print('output data : $output');
     return output;
   }
 
