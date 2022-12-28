@@ -131,12 +131,14 @@ class LinkAnalyzer {
 
   /// Takes an [http.Response] and returns a [html.Document]
   static Document? responseToDocument(http.Response response) {
+    print('response code : ${response.statusCode}');
     if (response.statusCode != 200) return null;
 
     Document? document;
     try {
       document = parse(utf8.decode(response.bodyBytes));
     } catch (err) {
+      print('decoding error');
       return document;
     }
 
