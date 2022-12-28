@@ -20,6 +20,7 @@ class CacheManager {
       {required String key, required Map<dynamic, dynamic> value}) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     var jsonMap = value;
+    print('cache save : ${jsonEncode(jsonMap)}');
     await sharedPreferences.setString(key, jsonEncode(jsonMap));
   }
 }

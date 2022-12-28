@@ -117,7 +117,6 @@ class LinkAnalyzer {
       return data_;
     } catch (error) {
       // Any sort of exceptions due to wrong URL's, host lookup failure etc.
-      print('url 에러 발생');
       return null;
     }
   }
@@ -179,6 +178,7 @@ class LinkAnalyzer {
       output.image = Uri.parse(url_).resolve(image).toString();
     }
 
+    print('output data : $output');
     return output;
   }
 
