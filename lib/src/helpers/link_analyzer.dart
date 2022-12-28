@@ -142,6 +142,7 @@ class LinkAnalyzer {
       return document;
     }
 
+    print('decoding document : $document');
     return document;
   }
 
