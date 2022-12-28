@@ -27,8 +27,9 @@ class LinkAnalyzer {
     Metadata? info_;
     // print(url);
     try {
+      print('url : $url');
       final infoJson = await CacheManager.getJson(key: url);
-      debugPrint('infoJson 및 url 확인 : $url, $infoJson');
+      print('infoJson 및 url 확인 : $url, $infoJson');
       if (infoJson != null) {
         info_ = Metadata.fromJson(infoJson);
         var isEmpty_ = info_.title == null || info_.title == 'null';
