@@ -63,12 +63,12 @@ class LinkAnalyzer {
   }) async {
     Metadata? info;
     if ((cache?.inSeconds ?? 0) > 0) {
-      print('before setJson');
+      print('before setJson : $url');
       info = await getInfoFromCache(url);
     } else {
       _deleteFromCache(url);
     }
-    print('info data : $info');
+    print('info data : $url and $info ');
     if (info != null) return info;
 
     // info = await _getInfo(url, multimedia);
@@ -80,7 +80,7 @@ class LinkAnalyzer {
     info?.desc = url;
     info?.url = url;
 
-    print('set info data : $info');
+    print('set info data : $url and $info');
     // Twitter generates meta tags on client side so it's impossible to read
     // So we use this hack to fetch server side rendered meta tags
     // This helps for URL's who follow client side meta tag generation technique
@@ -94,29 +94,31 @@ class LinkAnalyzer {
     }
     try {
       // Make our network call
+      print('before http : $url');
       final response = await http.get(Uri.parse(url), headers: headers_);
       final headerContentType = response.headers['content-type'];
+      print('response data : $response');
 
       if (headerContentType != null && headerContentType.startsWith('image/')) {
         info?.title = '';
         info?.desc = '';
         info?.image = url;
-        print('2nd Set info data : $info');
+        print('2nd Set info data : $url and $info');
         return info;
       }
 
       final document = responseToDocument(response);
-      print('document data : $document');
+      print('document data : $url and $document');
       if (document == null) return info;
 
       final data_ = _extractMetadata(document, url: url);
-      print('check data : $data_');
+      print('check data : $url and $data_');
 
       if (data_ == null) {
         return info;
       } else if (cache != null) {
         data_.timeout = DateTime.now().add(cache);
-        print('json data : ${data_.toJson()}');
+        print('json data : $url and ${data_.toJson()}');
         await CacheManager.setJson(key: url, value: data_.toJson());
       }
 
