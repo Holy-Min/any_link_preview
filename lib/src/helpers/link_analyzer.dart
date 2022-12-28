@@ -110,12 +110,14 @@ class LinkAnalyzer {
         return info;
       } else if (cache != null) {
         data_.timeout = DateTime.now().add(cache);
+        print('json data : ${data_.toJson()}');
         await CacheManager.setJson(key: url, value: data_.toJson());
       }
 
       return data_;
     } catch (error) {
       // Any sort of exceptions due to wrong URL's, host lookup failure etc.
+      print('url 에러 발생');
       return null;
     }
   }

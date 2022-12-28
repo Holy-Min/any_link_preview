@@ -6,6 +6,7 @@ class CacheManager {
   static Future getJson({required String key}) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     dynamic cache = sharedPreferences.getString(key);
+    print('cache data : $cache');
     var jsonMapCache = jsonDecode(cache) as Map<dynamic, dynamic>;
     return jsonMapCache;
   }
