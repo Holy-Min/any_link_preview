@@ -85,8 +85,8 @@ class LinkAnalyzer {
     // So we use this hack to fetch server side rendered meta tags
     // This helps for URL's who follow client side meta tag generation technique
     var headers_ = <String, String>{
-      'User-Agent':
-          'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
+          // 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
       // 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)'
     };
     if (headers != null) {
