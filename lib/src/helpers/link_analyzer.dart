@@ -80,6 +80,7 @@ class LinkAnalyzer {
     info?.desc = url;
     info?.url = url;
 
+    print('set info data : $info');
     // Twitter generates meta tags on client side so it's impossible to read
     // So we use this hack to fetch server side rendered meta tags
     // This helps for URL's who follow client side meta tag generation technique
@@ -100,13 +101,16 @@ class LinkAnalyzer {
         info?.title = '';
         info?.desc = '';
         info?.image = url;
+        print('2nd Set info data : $info');
         return info;
       }
 
       final document = responseToDocument(response);
+      print('document data : $document');
       if (document == null) return info;
 
       final data_ = _extractMetadata(document, url: url);
+      print('check data : $data_');
 
       if (data_ == null) {
         return info;
