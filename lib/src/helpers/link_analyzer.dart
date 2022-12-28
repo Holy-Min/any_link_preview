@@ -63,10 +63,12 @@ class LinkAnalyzer {
   }) async {
     Metadata? info;
     if ((cache?.inSeconds ?? 0) > 0) {
+      print('before setJson');
       info = await getInfoFromCache(url);
     } else {
       _deleteFromCache(url);
     }
+    print('info data : $info');
     if (info != null) return info;
 
     // info = await _getInfo(url, multimedia);
